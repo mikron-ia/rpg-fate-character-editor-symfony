@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Aspect
+ * Stunt
  *
- * @ORM\Table(name="aspect")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AspectRepository")
+ * @ORM\Table(name="stunt")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StuntRepository")
  */
-class Aspect
+class Stunt
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ class Aspect
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=80, unique=true)
      */
     private $name;
 
@@ -36,18 +36,12 @@ class Aspect
     private $description;
 
     /**
-     * @var string
+     * @var \stdClass
      *
-     * @ORM\Column(name="invoked", type="text")
+     * @ORM\Column(name="skill", type="object", nullable=true)
      */
-    private $invoked;
+    private $skill;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="compelled", type="text")
-     */
-    private $compelled;
 
     /**
      * Get id
@@ -64,7 +58,7 @@ class Aspect
      *
      * @param string $name
      *
-     * @return Aspect
+     * @return Stunt
      */
     public function setName($name)
     {
@@ -88,7 +82,7 @@ class Aspect
      *
      * @param string $description
      *
-     * @return Aspect
+     * @return Stunt
      */
     public function setDescription($description)
     {
@@ -108,50 +102,27 @@ class Aspect
     }
 
     /**
-     * Set invoked
+     * Set skill
      *
-     * @param string $invoked
+     * @param \stdClass $skill
      *
-     * @return Aspect
+     * @return Stunt
      */
-    public function setInvoked($invoked)
+    public function setSkill($skill)
     {
-        $this->invoked = $invoked;
+        $this->skill = $skill;
 
         return $this;
     }
 
     /**
-     * Get invoked
+     * Get skill
      *
-     * @return string
+     * @return \stdClass
      */
-    public function getInvoked()
+    public function getSkill()
     {
-        return $this->invoked;
-    }
-
-    /**
-     * Set compelled
-     *
-     * @param string $compelled
-     *
-     * @return Aspect
-     */
-    public function setCompelled($compelled)
-    {
-        $this->compelled = $compelled;
-
-        return $this;
-    }
-
-    /**
-     * Get compelled
-     *
-     * @return string
-     */
-    public function getCompelled()
-    {
-        return $this->compelled;
+        return $this->skill;
     }
 }
+
